@@ -62,3 +62,25 @@ function myFun() {
   }
   
   cc(2); cc(3); cc(7); cc('K'); cc('A');
+/*
+Delete Properties from a JavaScript Object
+We can also delete properties from objects like this:
+delete ourDog.bark; 
+*/
+// Testing Objects for Properties
+
+const myObj = {
+    top: "hat",
+    bottom: "pants"
+  };
+  
+  myObj.hasOwnProperty("top");
+  myObj.hasOwnProperty("middle");
+//   The first hasOwnProperty returns true, while the second returns false.
+
+
+  
+  
+
+
+
