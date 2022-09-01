@@ -105,3 +105,12 @@ function updateRecords(records, id, prop, value) {
     }
     return "No such contact";
   }
+
+  // Generate Random Whole Numbers within a Range
+  // Math.floor(Math.random() * (max - min + 1)) + min
+  function randomRange(myMin, myMax) {
+
+    return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin
+  
+    
+  }
