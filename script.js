@@ -114,3 +114,15 @@ function updateRecords(records, id, prop, value) {
   
     
   }
+
+  // Use the parseInt Function with a Radix
+  /*
+The function call looks like:
+parseInt(string, radix);
+*/
+const a = parseInt("11", 2);
+console.log(a);
+
+//converts binary '11' to 3...
+
+
