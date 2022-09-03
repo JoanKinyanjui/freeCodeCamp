@@ -156,4 +156,119 @@ function rangeOfNumbers(startNum, endNum) {
        return countArray; 
    }
  };
+
  console.log(rangeOfNumbers(4,9))
+
+ //Iterate Through the Keys of an Object with a for...in Statement...
+ const users = {
+  Alan: {
+    online: false
+  },
+  Jeff: {
+    online: true
+  },
+  Sarah: {
+    online: false
+  }
+}
+function countOnline(obj) {
+  // change code below this line
+  var counter = 0;
+  for (var user in obj) {
+      if (obj[user]["online"] === true) {
+          counter++
+      }
+      // change code above this line
+
+  } return counter;
+}
+
+
+
+const students={
+  Joan :{
+    name:'Joan',
+    accounts:'twitter',
+    hobbies:'Swimming,movies'
+  },
+  Belle :{
+    name:'Esther',
+    accounts:'twitter',
+    hobbies:'Swimming,movies'
+  },
+  Mana :{
+    name:'Ruth',
+    accounts:'twitter',
+    hobbies:'Swimming,movies'
+  }
+};
+
+console.log(students)
+// console.log(students['Joan'])
+
+// for(const student of Object.keys(students)){
+//   console.log(students[student])
+// }
+
+  for (const info of Object.keys(students)){
+    console.log(students[info]);
+  }
+
+  console.log(Object.entries(students))
+
+  //REVERSING A STRING...
+  function reverseString(str) {
+    let array=str.split('')
+    let newArray=[];
+    for(let i=array.length-1; i>=0; i--){
+      newArray.push(array[i]);
+    }
+    let newString= newArray.join('')
+      console.log(newString)
+    return newString;
+  
+  }
+  
+  reverseString("hello");
+
+  //FIND THE LONGEST WORD IN A STRING
+  function findLongestWordLength(str) {
+    let array= str.split(' ');
+    console.log(array)
+    let numbersArray=[];
+    for (let i=0; i<=array.length-1;i++){
+      numbersArray.push(array[i].length);
+      
+    }
+   let largest=Math.max(...numbersArray);
+      console.log(largest)
+    console.log(numbersArray)
+    return largest;
+  }
+  
+  findLongestWordLength("The quick brown fox jumped over the lazy dog");
+
+
+  //RETURN LARGEST NUMBERS IN EACH ARRAY INTO AN ARRAY
+  function largestOfFour(arr) {
+    let largestArray=[]
+      for (let i=0; i<=arr.length-1;i++){
+      let largest=Math.max(...arr[i])
+      largestArray.push(largest)
+  
+    }
+    return largestArray;
+  }
+  
+  largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+  clearInterval.console()
+
+  // Title Case a Sentence
+  function titleCase(str) {
+    const newTitle = str.split(" ");
+    const updatedTitle = [];
+    for (let st in newTitle) {
+      updatedTitle[st] = newTitle[st][0].toUpperCase() + newTitle[st].slice(1).toLowerCase();
+    }
+    return updatedTitle.join(" ");
+  }
