@@ -346,3 +346,90 @@ function spinalCase(str) {
 
 // test here
 spinalCase("This Is Spinal Tap");
+
+
+
+//DNA PAIRING...
+function pairElement(str) {
+  //create object for pair lookup
+  var pairs = {
+    A: "T",
+    T: "A",
+    C: "G",
+    G: "C"
+  };
+  //split string into array of characters
+  var arr = str.split("");
+  //map character to array of character and matching pair
+  return arr.map(x => [x, pairs[x]]);
+}
+
+//test here
+pairElement("GCG");
+
+//MISSING LETTERS
+// function fearNotLetter(str) {
+//   var alphabet='abcdefghijklmnopqrstuvwxyz';
+//   var setStr=str.split('');
+//   var startPoint=alphabet.indexOf(str[0]);
+//   var endPoint=alphabet.indexOf(str[str.length-1]);
+ 
+  
+
+//   for(var i=startPoint; i<=endPoint; i++){
+    
+//   if(setStr.includes(alphabet[i])=== false){
+//       console.log(startPoint)
+//     return alphabet[i]
+   
+//   }else{
+//     return undefined;
+//   }
+//   }
+// };
+
+// fearNotLetter("abce");
+function fearNotLetter(str) {
+  for (let i = 0; i < str.length; i++) {
+    /* code of current character */
+    const charCode = str.charCodeAt(i);
+
+    /* if code of current character is not equal to first character + no of iteration
+        then a letter was skipped */
+    if (charCode !== str.charCodeAt(0) + i) {
+      /* if current character skipped past a character find previous character and return */
+      return String.fromCharCode(charCode - 1);
+    }
+  }
+  return undefined;
+}
+
+// test here
+fearNotLetter("abce");
+
+
+//SUM ALL PRIME NUMBERS...
+//check for prime numbers function...
+function isPrime(singleNum){
+  let counter=2;
+  while(counter < singleNum){
+    if(singleNum % counter === 0){
+      return false;
+    }
+    counter++;
+}
+return true
+}
+
+function sumPrimes(num){
+let counter =2;
+let sum =0;
+
+while(counter<=num){
+  if(isPrime(counter)){
+    sum +=counter;
+  }
+  counter+=1
+}
+return sum
+}
