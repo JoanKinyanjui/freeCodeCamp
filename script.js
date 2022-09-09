@@ -433,3 +433,263 @@ while(counter<=num){
 }
 return sum
 }
+//SMALLEST COMMON DIVISOR
+function smallestCommons(arr) {
+  // Setup
+  const [min, max] = arr.sort((a, b) => a - b);
+  const numberDivisors = max - min + 1;
+  // Largest possible value for SCM
+  let upperBound = 1;
+  for (let i = min; i <= max; i++) {
+    upperBound *= i;
+  }
+  // Test all multiples of 'max'
+  for (let multiple = max; multiple <= upperBound; multiple += max) {
+    // Check if every value in range divides 'multiple'
+    let divisorCount = 0;
+    for (let i = min; i <= max; i++) {
+      // Count divisors
+      if (multiple % i === 0) {
+        divisorCount += 1;
+      }
+    }
+    if (divisorCount === numberDivisors) {
+      return multiple;
+    }
+  }
+}
+
+smallestCommons([1, 5]);
+
+
+//CONVERT TO ROMAN NUMBERS...
+function convertToRoman(num) {
+  /* 
+  Main IDea
+  convert num to str 
+  convert each str char to it's corresponding Roman number considering it's order 
+  join the result 
+  */ 
+  var str ='';
+  str += num;
+  var result = [];
+  var res1 = '';
+  var res2 = '';
+  var res3 = '';
+  var res4 = '';
+  if (str.length == 0){
+  result = [];
+  }else if (str.length > 0){
+    switch (str[str.length-1]){
+    case "1" :
+    res1 = "I";
+    break;
+    case "2" :
+    res1 = "II";
+    break;
+      case "3" :
+    res1 = "III";
+    break;
+      case "4" :
+    res1 = "IV";
+    break;
+      case "5" :
+    res1 = "V";
+    break;
+      case "6" :
+    res1 = "VI";
+    break;
+      case "7" :
+    res1 = "VII";
+    break;
+      case "8" :
+    res1 = "VIII";
+    break;
+      case "9" :
+    res1 = "IX";
+    break;
+      
+  }
+    switch (str[str.length-2]){
+        
+      case "1" :
+    res2 = "X";
+    break;
+      case "2" :
+    res2 = "XX";
+    break;
+      case "3" :
+    res2 = "XXX";
+    break;
+      case "4" :
+    res2 = "XL";
+    break;
+      case "5" :
+    res2 = "L";
+    break;
+      case "6" :
+    res2 = "LX";
+    break;
+      case "7" :
+    res2 = "LXX";
+    break;
+      case "8" :
+    res2 = "LXXX";
+    break;
+      case "9" :
+    res2 = "XC";
+    break;
+    }
+    switch (str[str.length-3]){
+        
+      case "1" :
+    res3 = "C";
+    break;
+      case "2" :
+    res3 = "CC";
+    break;
+      case "3" :
+    res3 = "CCC";
+    break;
+      case "4" :
+    res3 = "CD";
+    break;
+      case "5" :
+    res3 = "D";
+    break;
+      case "6" :
+    res3 = "DC";
+    break;
+      case "7" :
+    res3 = "DCC";
+    break;
+      case "8" :
+    res3 = "DCCC";
+    break;
+      case "9" :
+    res3 = "CM";
+    break;
+    }
+    switch (str[str.length-4]){
+        
+      case "1" :
+    res4 = "M";
+    break;
+      case "2" :
+    res4 = "MM";
+    break;
+      case "3" :
+    res4 = "MMM";
+    break;
+    }
+  }
+result.push(res4,res3,res2,res1);
+  return result.join("");
+}
+
+convertToRoman(39999);
+
+//CASH REGISTER...\
+
+var money = [
+  { name: "ONE HUNDRED", value: 100.0 },
+  { name: "TWENTY", value: 20.0 },
+  { name: "TEN", value: 10.0 },
+  { name: "FIVE", value: 5.0 },
+  { name: "ONE", value: 1.0 },
+  { name: "QUARTER", value: 0.25 },
+  { name: "DIME", value: 0.1 },
+  { name: "NICKEL", value: 0.05 },
+  { name: "PENNY", value: 0.01 },
+];
+function checkCashRegister(price, cash, cid) {
+  let change = cash - price;
+  let result = {
+    status: "",
+    change: [],
+  };
+  let sumCid = 0;
+  for (let i = 0; i < cid.length; i++) {
+    sumCid += cid[i][1]
+  }
+  console.log(sumCid, '=sumCid')
+  if (sumCid < change) {
+    result.status = "INSUFFICIENT_FUNDS";
+    return result;
+  }
+  if (sumCid === change) {
+    result.status = "CLOSED"
+    result.change = cid
+    return result;
+  }
+  let newResult = [];
+  cid = cid.reverse();
+  for (let i = 0; i < cid.length; i++) {
+    let val = 0
+    console.log(money[i].value, "denom val")
+    console.log(cid[i][0], "=cid i of zero")
+    while (money[i].value <= change && cid[i][1] > 0) {
+      console.log('reached while')
+      cid[i][1] -= money[i].value
+      change = change.toFixed(2)
+      change -= money[i].value
+      console.log(change, "=change")
+      val += money[i].value
+    }
+    if (val > 0) {
+      newResult.push([cid[i][0], val])
+    }
+  }
+  if (change > 0) {
+    console.log('change=', change)
+    result.status = "INSUFFICIENT_FUNDS";
+    return result
+  }
+  result.status = "OPEN";
+  result.change = newResult;
+  return result;
+}
+console.log(
+  checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])
+);
+
+
+//PALINDROME CHECKER...
+
+//CAESARS CIPHER...
+function rot13(str) { // LBH QVQ VG!
+  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var cipher = "NOPQRSTUVWXYZABCDEFGHIJKLM";
+  
+  var replacer = [];
+  for (var x = 0; x < str.length; x++)  { //loops through the given string
+  var index = alphabet.indexOf(str[x]);  //sets the index of letter from the coded string
+  if (cipher.charCodeAt(index) > 0) {  //check to see if the letter is alphanumeric
+     replacer.push(String.fromCharCode(cipher.charCodeAt(index))); //add to array
+  }
+    else replacer.push(str[x]); //adds non-alphanumeric to the array
+  }
+  return replacer.join(""); //combines it all back together
+}
+
+// Change the inputs below to test
+rot13("SERR CVMMN!");
+
+
+//TELEPHONE NUMBER VALIDATOR...
+function telephoneCheck(str) {
+  let rex1 = /^(1\s?)?\d{3}([-\s]?)\d{3}\2\d{4}$/,
+        rex2 = /^(1\s?)?\(\d{3}\)\s?\d{3}[-\s]?\d{4}$/;
+
+    if (rex1.test(str)) {
+        return true;
+    }
+    else {
+        return rex2.test(str) ? true : false
+    }
+
+}
+
+telephoneCheck("555-555-5555");
+
+//
